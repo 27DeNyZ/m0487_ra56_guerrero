@@ -1,11 +1,9 @@
 # m0487_ra56_guerrero
 
+### V1
+
 # NOTACIÓ
 Fran, he creat una nova branca que es diu actualització ja que m'havia oblidat de fer diferents coses com el menú i altres tests. Faig el merge però era per deixar-ho clar, ja que pot ser una mica lios.
-
-
-
-
 
 
 # Biblioteca - Gestió de Llibres i Usuaris amb SQLite3
@@ -90,6 +88,74 @@ Quan executes el programa, veuràs aquest menú:
     -Afegir una interfície gràfica amb Tkinter.
     -Implementar una API REST amb FastAPI.
     -Permetre exportar i importar dades a CSV o JSON.
+
+
+
+
+### V2
+
+# Afegim herència a usuari comprovant l'usuari registrat
+Realitzem l'herència de la classe Usuari amb una nova classe anomenada UsuariResgistrat
+
+## Funcionalitats
+### Gestió de llibres:
+
+    -Afegir, llistar i eliminar llibres.
+
+    -Assignar un llibre en préstec a un usuari.
+
+    -Tornar un llibre a la biblioteca.
+
+### Gestió d'usuaris:
+
+    -Afegir, llistar i eliminar usuaris.
+
+### Ús de Hashlib i getpass
+
+    - Fem ús del hashlib i del getpass pel control de contrasenyes, codificació, etc.
+
+### Control d'errors:
+
+    - Executem testing del nostre programa
+
+### Instal·lació i ús
+    -Utilitzar un repositori github i Visual Studio Code
+    -Executa el programa: 
+        python menu.py
+    -Segueix el menú per gestionar la biblioteca.
+
+### Menú principal
+Quan executes el programa, veuràs aquest menú:
+
+1) Llistar Llibres
+2) Introduir Llibres
+3) Eliminar Llibres
+4) Llistar Usuaris
+5) Introduir Usuaris
+6) Eliminar Usuaris
+7) Prèstec Llibres
+8) Tornar Llibres
+0) Sortir del programa
+    -Introdueix un número i segueix les instruccions.
+
+### Tecnologies utilitzades
+    -Python 3 
+    -SQLite3 
+    -Try-Except per control d'errors
+    -Unittest
+    -Hashlib
+    -Getpass
+
+### Millores possibles:
+    -Actualitzar dades de llibre i usuaris.
+    -Que el dni compleixi el patró d'un DNI convencional.
+    -Tenir en compte el temps (màxim un mes) i la quantitat (màxim 3 llibres)
+    -Realitzar unittest per les diferents classes i metodes.
+
+    -Afegir una interfície gràfica amb Tkinter.
+    -Implementar una API REST amb FastAPI.
+    -Permetre exportar i importar dades a CSV o JSON.
+
 
 ### Crèdits
 Creat per [Denís Guerrero Rodríguez], 2025.
