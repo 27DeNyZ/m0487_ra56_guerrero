@@ -30,8 +30,12 @@ class Biblioteca:
 
     def afegir_usuari(self, usuari):
         cursor = self.conn.cursor()
+    try:
         cursor.execute("INSERT INTO usuaris VALUES (?, ?, ?)", (usuari.dni, usuari.nom, usuari.cognoms))
         self.conn.commit()
+    except sqlite3.IntegrityError:
+        print("L'usuari ja existeix a la base de dades.")
+
 
     def afegir_llibre(self, llibre):
         cursor = self.conn.cursor()

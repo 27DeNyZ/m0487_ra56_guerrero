@@ -1,6 +1,7 @@
 from biblioteca import Biblioteca
-from usuari import Usuari
+from usuari_registrat import UsuariRegistrat  
 from llibre import Llibre
+
 
 def mostrar_menu():
     print("\n--- MENÚ BIBLIOTECA ---")
@@ -25,7 +26,7 @@ def main():
         opcio = input("Tria una opció: ")
 
         if opcio == "1":
-            usuari = Usuari()
+            usuari = UsuariRegistrat()  # Canviat!
             usuari.introduir_dades()
             biblio.afegir_usuari(usuari)
 
