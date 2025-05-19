@@ -12,7 +12,7 @@ class Usuari:
     def introduir_dades(self):
         self.nom = input("Nom: ")
         self.cognoms = input("Cognoms: ")
-        
+
         while True:
             self.dni = input("DNI (format 12345678A): ")
             if self.dni_valid(self.dni):

@@ -1,14 +1,27 @@
 import sqlite3
+from datetime import date
+
 
 class Biblioteca:
     def __init__(self):
         self.conn = sqlite3.connect("biblioteca.db")
 
-    def crear_taules(self):
-        cursor = self.conn.cursor()
-        cursor.execute('''CREATE TABLE IF NOT EXISTS usuaris (dni TEXT PRIMARY KEY, nom TEXT, cognoms TEXT)''')
-        cursor.execute('''CREATE TABLE IF NOT EXISTS llibres (titol TEXT PRIMARY KEY, autor TEXT, dni_prestec TEXT)''')
-        self.conn.commit()
+def crear_taules(self):
+    cursor = self.conn.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS usuaris (
+                        dni TEXT PRIMARY KEY, 
+                        nom TEXT, 
+                        cognoms TEXT
+                      )''')
+
+    cursor.execute('''CREATE TABLE IF NOT EXISTS llibres (
+                        titol TEXT PRIMARY KEY, 
+                        autor TEXT, 
+                        dni_prestec TEXT, 
+                        data_prestec TEXT
+                      )''')
+    self.conn.commit()
+
 
     def afegir_usuari(self, usuari):
         cursor = self.conn.cursor()
@@ -44,14 +57,28 @@ class Biblioteca:
 
     def prestar_llibre(self, titol, dni):
         cursor = self.conn.cursor()
-        cursor.execute("UPDATE llibres SET dni_prestec = ? WHERE titol = ? AND dni_prestec = 'None'", (dni, titol))
-        self.conn.commit()
+
+    cursor.execute("SELECT COUNT(*) FROM llibres WHERE dni_prestec = ?", (dni,))
+    prestats = cursor.fetchone()[0]
+    if prestats >= 3:
+        print("Aquest usuari ja té 3 llibres en préstec.")
+        return
+
+    avui = date.today().isoformat()
+    cursor.execute("UPDATE llibres SET dni_prestec = ?, data_prestec = ? WHERE titol = ? AND dni_prestec = 'None'", 
+                   (dni, avui, titol))
+    if cursor.rowcount == 0:
+        print("l llibre no età disponible o no existeix.")
+    else:
+        print("Préstec realitzat correctament.")
+    self.conn.commit()
+
 
     def tornar_llibre(self, titol):
         cursor = self.conn.cursor()
         cursor.execute("UPDATE llibres SET dni_prestec = 'None' WHERE titol = ?", (titol,))
         self.conn.commit()
-        
+
 def actualitzar_usuari(self, dni, nou_nom, nous_cognoms):
     cursor = self.conn.cursor()
     cursor.execute("UPDATE usuaris SET nom = ?, cognoms = ? WHERE dni = ?", (nou_nom, nous_cognoms, dni))
