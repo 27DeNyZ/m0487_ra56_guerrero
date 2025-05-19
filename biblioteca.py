@@ -51,3 +51,15 @@ class Biblioteca:
         cursor = self.conn.cursor()
         cursor.execute("UPDATE llibres SET dni_prestec = 'None' WHERE titol = ?", (titol,))
         self.conn.commit()
+        
+def actualitzar_usuari(self, dni, nou_nom, nous_cognoms):
+    cursor = self.conn.cursor()
+    cursor.execute("UPDATE usuaris SET nom = ?, cognoms = ? WHERE dni = ?", (nou_nom, nous_cognoms, dni))
+    self.conn.commit()
+
+def actualitzar_llibre(self, titol, nou_autor):
+    cursor = self.conn.cursor()
+    cursor.execute("UPDATE llibres SET autor = ? WHERE titol = ?", (nou_autor, titol))
+    self.conn.commit()
+
+
