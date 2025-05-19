@@ -1,3 +1,5 @@
+import re
+
 class Usuari:
     def __init__(self, nom="None", cognoms="None", dni="None"):
         self.nom = nom
@@ -10,4 +12,12 @@ class Usuari:
     def introduir_dades(self):
         self.nom = input("Nom: ")
         self.cognoms = input("Cognoms: ")
-        self.dni = input("DNI: ")
+        
+        while True:
+            self.dni = input("DNI (format 12345678A): ")
+            if self.dni_valid(self.dni):
+                break
+            print("DNI no vàlid. Ha de tenir 8 números seguits d'una lletra.")
+
+    def dni_valid(self, dni):
+        return bool(re.match(r'^\d{8}[A-Za-z]$', dni))
