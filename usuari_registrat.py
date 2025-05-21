@@ -3,18 +3,28 @@ import hashlib
 import getpass
 
 class UsuariRegistrat(Usuari):
-    def __init__(self, tipus_usuari="lector", **kwargs):
+    def __init__(self, nom, cognoms, dni, contrasenya, tipus_usuari="lector"):
         """
         Constructor de la classe UsuariRegistrat, que hereta de Usuari.
 
         Paràmetres:
+        - nom: str
+        - cognoms: str
+        - dni: str
+        - contrasenya: str
         - tipus_usuari: str -> 'lector' o 'admin'
-        - **kwargs: dict -> altres atributs heretats de Usuari (nom, cognoms, dni)
         """
-        super().__init__(**kwargs)
-        self._contrasenya = None
+        super().__init__(nom, cognoms, dni, tipus_usuari, contrasenya)
+        self._contrasenya = contrasenya  
         self.tipus_usuari = tipus_usuari
 
+    def verificar_contrasenya(self, contrasenya):
+        import hashlib
+        return self._contrasenya == hashlib.sha256(contrasenya.encode()).hexdigest()
+
+    @property
+    def contrasenya(self):
+        return self._contrasenya
 
     def _encripta_contrasenya(self, contrasenya):
         """
@@ -22,11 +32,7 @@ class UsuariRegistrat(Usuari):
         """
         return hashlib.sha256(contrasenya.encode()).hexdigest()
 
-    def verificar_contrasenya(self, contrasenya):
-        """
-        Comprova si la contrasenya introduïda coincideix amb la encriptada.
-        """
-        return self._contrasenya == self._encripta_contrasenya(contrasenya)
+
 
     def introduir_dades(self):
         """

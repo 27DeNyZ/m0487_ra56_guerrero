@@ -1,0 +1,20 @@
+@startuml
+actor Admin
+actor Lector
+
+rectangle Biblioteca {
+  Admin --> (Afegir usuari)
+  Admin --> (Eliminar usuari)
+  Admin --> (Afegir llibre)
+  Admin --> (Eliminar llibre)
+  Admin --> (Actualitzar usuari)
+  Admin --> (Actualitzar llibre)
+  Admin --> (Llistar llibres)
+  Admin --> (Prestar llibre)
+  Admin --> (Tornar llibre)
+
+  Lector --> (Llistar llibres)
+  Lector --> (Prestar llibre)
+  Lector --> (Tornar llibre)
+}
+@enduml

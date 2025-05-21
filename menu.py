@@ -3,18 +3,17 @@ from biblioteca import Biblioteca
 from usuari_registrat import UsuariRegistrat  
 from llibre import Llibre
 
-def login(biblioteca):
-    print("\n--- LOGIN ---")
-    dni = input("DNI: ")
-    contrasenya = getpass.getpass("Contrasenya: ")
-    usuari = biblioteca.get_usuari_per_dni(dni)
+########################################################################
+########################################################################
+# De primeres al login has de iniciar amb l'admin default (
+# DNI: 12345678A
+# Contrasenya: admin                                    
+########################################################################
+########################################################################
 
-    if usuari and usuari.verificar_contrasenya(contrasenya):
-        print(f"Benvingut/da {usuari.nom}!")
-        return usuari
-    else:
-        print("DNI o contrasenya incorrectes.")
-        return None
+
+
+
 
 def mostrar_menu_admin():
     print("\n--- MENÚ ADMIN ---")
@@ -37,9 +36,24 @@ def mostrar_menu_lector():
     print("3. Tornar llibre")
     print("0. Sortir")
 
+
+def login(biblioteca):
+    print("\n--- LOGIN ---")
+    dni = input("DNI(default=12345678A): ")
+    contrasenya = getpass.getpass("Contrasenya(default=admin): ")
+    usuari = biblioteca.get_usuari_per_dni(dni)
+
+    if usuari and usuari.verificar_contrasenya(contrasenya):
+        print(f"Benvingut/da {usuari.nom}!")
+        return usuari
+    else:
+        print("DNI o contrasenya incorrectes.")
+        return None   
+
 def main():
     biblio = Biblioteca()
     biblio.crear_taules()
+    biblio.crear_admin_per_defecte()  
 
     usuari_loguejat = None
     while not usuari_loguejat:
@@ -51,7 +65,7 @@ def main():
             opcio = input("Tria una opció: ")
 
             if opcio == "1":
-                usuari = UsuariRegistrat(nom="Anna", cognoms="Serra", dni="12345678A", tipus_usuari="admin")
+                usuari = UsuariRegistrat(nom="Anna", cognoms="Serra", dni="12345678A", tipus_usuari="admin", contrasenya="123")
                 usuari.introduir_dades()
                 biblio.afegir_usuari(usuari)
 

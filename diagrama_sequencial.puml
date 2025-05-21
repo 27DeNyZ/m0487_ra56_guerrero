@@ -1,0 +1,19 @@
+@startuml
+actor Usuari
+
+participant "menu.py" as Menu
+participant "biblioteca.py" as Biblioteca
+participant "UsuariRegistrat" as Usuari
+
+Usuari -> Menu : introduir DNI i contrasenya
+Menu -> Biblioteca : get_usuari_per_dni(dni)
+Biblioteca -> Usuari : __init__(dni, nom, cognoms, tipus_usuari, contrasenya)
+activate Usuari
+Usuari --> Biblioteca : retorna objecte UsuariRegistrat
+deactivate Usuari
+
+Menu -> Usuari : verificar_contrasenya(contrasenya)
+Usuari --> Menu : True / False
+
+Menu --> Usuari : Missatge de benvinguda o error
+@enduml
