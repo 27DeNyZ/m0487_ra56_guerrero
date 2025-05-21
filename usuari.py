@@ -19,5 +19,5 @@ class Usuari:
                 break
             print("DNI no vàlid. Ha de tenir 8 números seguits d'una lletra.")
 
-    def ni_valid(self, dni):
+    def dni_valid(self, dni):
         return bool(re.match(r'^\d{8}[A-Za-z]$', dni))

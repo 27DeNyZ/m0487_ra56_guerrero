@@ -3,15 +3,18 @@ import hashlib
 import getpass
 
 class UsuariRegistrat(Usuari):
-    """
-    Classe que representa un usuari registrat, que hereta de la classe Usuari.
-    Afegeix gestió de contrasenya i tipus d'usuari (lector o admin).
-    """
-    
-    def __init__(self, nom="None", cognoms="None", dni="None", tipus_usuari="lector"):
-        super().__init__(nom, cognoms, dni)
+    def __init__(self, tipus_usuari="lector", **kwargs):
+        """
+        Constructor de la classe UsuariRegistrat, que hereta de Usuari.
+
+        Paràmetres:
+        - tipus_usuari: str -> 'lector' o 'admin'
+        - **kwargs: dict -> altres atributs heretats de Usuari (nom, cognoms, dni)
+        """
+        super().__init__(**kwargs)
         self._contrasenya = None
-        self.tipus_usuari = tipus_usuari if tipus_usuari in ["lector", "admin"] else "lector"
+        self.tipus_usuari = tipus_usuari
+
 
     def _encripta_contrasenya(self, contrasenya):
         """

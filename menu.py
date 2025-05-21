@@ -26,7 +26,7 @@ def main():
         opcio = input("Tria una opció: ")
 
         if opcio == "1":
-            usuari = UsuariRegistrat()  # Canviat!
+            usuari = UsuariRegistrat(nom="Anna", cognoms="Serra", dni="12345678A", tipus_usuari="admin")
             usuari.introduir_dades()
             biblio.afegir_usuari(usuari)
 
